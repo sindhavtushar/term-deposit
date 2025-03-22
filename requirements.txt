@@ -205,4 +205,4 @@ wrapt==1.17.2
 xgboost==2.1.4
 zope.event==5.0
 zope.interface==7.2
-gunicorn app:app
+gunicorn 
