@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <title> Term Prediction </title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="../static/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="../static/css/style.css" rel="stylesheet" />
+  <link href="../static/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="../static/images/hero-bg.png" alt="">
+      </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="{{ url_for('index') }}">
+            <span>Customer Term Prediction</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('dataset_info') }}">Dataset Info</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('eda') }}">EDA & Statistics</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('show_form') }}">Prediction Form</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">Project Info</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- End Header Section -->
+  </div>
+
+  <!-- About Section -->
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>About <span>The Project</span></h2>
+      </div>
+
+      <h3>📌 Project Objective</h3>
+      <p>
+        This project aims to predict whether a bank customer will subscribe to a term deposit using machine learning. 
+        It analyzes banking marketing data to identify patterns in customer behavior.
+      </p>
+
+      <h3>📊 Dataset Overview</h3>
+      <ul>
+        <li>📌 <strong>Total Records:</strong> 45,211</li>
+        <li>📌 <strong>Target Variable:</strong> `y` (Subscribed or Not Subscribed)</li>
+        <li>📌 <strong>Key Features:</strong></li>
+        <ul>
+          <li>📞 `duration` (Call duration) – Most influential feature.</li>
+          <li>📅 `month_sin` & `month_cos` (Seasonality effects).</li>
+          <li>💰 `balance` (Customer bank balance).</li>
+          <li>📈 `campaign` (Number of contacts during the campaign).</li>
+        </ul>
+        <li>⚠️ <strong>Class Imbalance:</strong> 88.3% not subscribed, 11.7% subscribed.</li>
+      </ul>
+
+      <h3>🔍 Exploratory Data Analysis (EDA)</h3>
+      <p>
+          The dataset was analyzed for missing values, outliers, and feature importance. Key findings:
+      </p>
+      <ul>
+          <li>✔ <strong>No missing values found.</strong></li>
+          <li>⚠ <strong>Outliers detected</strong> in `balance`, `pdays`, and `duration`.</li>
+          <li>📈 <strong>Feature importance:</strong> `duration` contributes 33.1% to predictions.</li>
+      </ul>
+      
+      <h4>📊 Visualizations</h4>
+
+      <!-- Feature Distribution -->
+      <div class="eda-section">
+        <h5>📈 Feature Distribution</h5>
+        <p>Distribution of key numerical features.</p>
+        <img src="../static/images/feature_distri.png" alt="Feature Distribution" class="img-fluid" width="80%">
+      </div>
+      
+      <br>
+      <!-- Outlier Detection -->
+      <div class="eda-section">
+        <h5>🚨 Outlier Detection (Boxplots)</h5>
+        <p>Boxplots showing outliers in numerical columns.</p>
+        <img src="../static/images/Box_plot_numeric_cols1.png" alt="Outlier Detection" class="img-fluid" width="80%">
+      </div>
+
+      <br>
+      <!-- Target Variable Distribution -->
+      <div class="eda-section">
+        <h5>🎯 Target Class Distribution</h5>
+        <p>Class imbalance visualization for subscribed vs. non-subscribed customers.</p>
+        <img src="../static/images/target_var_distri.png" alt="Target Class Distribution" class="img-fluid" width="60%">
+      </div>
+
+      <br>
+      <!-- Feature Correlation -->
+      <div class="eda-section">
+        <h5>📊 Feature Correlation Matrix</h5>
+        <p>Correlation between features and the target variable.</p>
+        <img src="../static/images/feature_correlation_matx.png" alt="Feature Correlation" class="img-fluid" width="80%">
+      </div>
+
+      <br>
+      <!-- Categorical Feature Distributions -->
+      <div class="eda-section">
+        <h5>📌 Categorical Feature Distributions</h5>
+        <p>Distribution of categorical variables in the dataset.</p>
+
+        <div class="row">
+          <div class="col-md-4"><img src="../static/images/job_distri.png" alt="Job Distribution" class="img-fluid"></div>
+          <div class="col-md-4"><img src="../static/images/marital_distri.png" alt="Marital Status" class="img-fluid"></div>
+          <div class="col-md-4"><img src="../static/images/education_distri.png" alt="Education Level" class="img-fluid"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"><img src="../static/images/default_distri.png" alt="Credit Default" class="img-fluid"></div>
+          <div class="col-md-4"><img src="../static/images/housing_distri.png" alt="Housing Loan" class="img-fluid"></div>
+          <div class="col-md-4"><img src="../static/images/loan_distri.png" alt="Personal Loan" class="img-fluid"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4"><img src="../static/images/contact_distri.png" alt="Contact Type" class="img-fluid"></div>
+          <div class="col-md-4"><img src="../static/images/month_distri.png" alt="Last Contact Month" class="img-fluid"></div>
+          <div class="col-md-4"><img src="../static/images/poutcome_distri.png" alt="Previous Campaign Outcome" class="img-fluid"></div>
+        </div>
+      </div>
+
+      <br>
+  </section>
+  <!-- End of About Section -->
+
+    <!-- Footer -->
+    <section class="footer_section">
+      <div class="container">
+          <p>&copy; <span id="displayYear"></span> All Rights Reserved By 
+              <a href="https://html.design/" target="_blank">Free Html Templates</a>
+          </p>
+      </div>
+    </section>
+
+  <!-- Scripts -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>

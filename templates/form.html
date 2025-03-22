@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="../static/images/favicon.png" type="">
+
+    <title> Term prediction </title>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- font awesome style -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="../static/css/responsive.css" rel="stylesheet" />
+
+    <style>
+        /* Additional form styles */
+        .container-form {
+            width: 50%;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .info-box {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .container-form {
+                width: 90%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="hero_area">
+
+        <div class="hero_bg_box">
+            <div class="bg_img_box">
+                <img src="../static/images/hero-bg.png" alt="">
+            </div>
+        </div>
+
+
+      <!-- header section starts -->
+      <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <span>Customer Term Prediction</span>
+              </a>
+
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class=""></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('dataset_info') }}">Dataset Info</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('eda') }}">EDA and statistics</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('show_form') }}">Prediction Form</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">Project Info</a>
+                  </li>
+                </ul>
+              </div>              
+
+          </nav>
+        </div>
+      </header>
+      <!-- end header section -->
+       
+
+        <!-- form section -->
+        <section class="form_section">
+            <div class="container-form">
+                <h2>Bank Client Information Form</h2>
+
+                <div class="info-box">
+                    <h3>About This Form</h3>
+                    <p>Please provide the client's banking details for term subscription prediction.</p>
+                </div>
+
+                <form action="/submit_form" method="post">
+                    <!-- Personal Details -->
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="job">Job:</label>
+                        <select id="job" name="job" required>
+                            <option value="admin">Admin</option>
+                            <option value="unemployed">Unemployed</option>
+                            <option value="student">Student</option>
+                            <option value="management">Management</option>
+                            <option value="housemaid">Housemaid</option>
+                            <option value="entrepreneur">Entrepreneur</option>
+                            <option value="blue-collar">Blue-collar</option>
+                            <option value="self-employed">Self-employed</option>
+                            <option value="retired">Retired</option>
+                            <option value="technician">Technician</option>
+                            <option value="services">Services</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="marital">Marital Status:</label>
+                        <select id="marital" name="marital" required>
+                            <option value="married">Married</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="single">Single</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="education">Education:</label>
+                        <select id="education" name="education" required>
+                            <option value="secondary">Secondary</option>
+                            <option value="primary">Primary</option>
+                            <option value="tertiary">Tertiary</option>
+                        </select>
+                    </div>
+                
+                    <!-- Financial Information -->
+                    <div class="form-group">
+                        <label>Has credit in default?</label>
+                        <div class="radio-group">
+                            <input type="radio" id="default_yes" name="default" value="yes" required>
+                            <label for="default_yes">Yes</label>
+                            <input type="radio" id="default_no" name="default" value="no">
+                            <label for="default_no">No</label>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="balance">Average yearly balance (€):</label>
+                        <input type="number" id="balance" name="balance" required>
+                    </div>
+                
+                    <!-- Loan Status -->
+                    <div class="form-group">
+                        <label>Has a housing loan?</label>
+                        <div class="radio-group">
+                            <input type="radio" id="housing_yes" name="housing" value="yes" required>
+                            <label for="housing_yes">Yes</label>
+                            <input type="radio" id="housing_no" name="housing" value="no">
+                            <label for="housing_no">No</label>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label>Has a personal loan?</label>
+                        <div class="radio-group">
+                            <input type="radio" id="loan_yes" name="loan" value="yes" required>
+                            <label for="loan_yes">Yes</label>
+                            <input type="radio" id="loan_no" name="loan" value="no">
+                            <label for="loan_no">No</label>
+                        </div>
+                    </div>
+                
+                    <!-- Communication Details -->
+                    <div class="form-group">
+                        <label for="contact">Contact Type:</label>
+                        <select id="contact" name="contact" required>
+                            <option value="telephone">Telephone</option>
+                            <option value="cellular">Cellular</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="day">Last Contact Day:</label>
+                        <input type="number" id="day" name="day" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="month">Last Contact Month:</label>
+                        <select id="month" name="month" required>
+                            <option value="jan">Jan</option>
+                            <option value="feb">Feb</option>
+                            <option value="mar">Mar</option>
+                            <option value="apr">Apr</option>
+                            <option value="may">May</option>
+                            <option value="jun">Jun</option>
+                            <option value="jul">Jul</option>
+                            <option value="aug">Aug</option>
+                            <option value="sep">Sep</option>
+                            <option value="oct">Oct</option>
+                            <option value="nov">Nov</option>
+                            <option value="dec">Dec</option>
+                        </select>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="duration">Last Contact Duration (in seconds):</label>
+                        <input type="number" id="duration" name="duration" required>
+                    </div>
+                
+                    <!-- Marketing Campaign Details -->
+                    <div class="form-group">
+                        <label for="campaign">Number of Contacts in Campaign:</label>
+                        <input type="number" id="campaign" name="campaign" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="pdays">Days Passed Since Last Contact (-1 means never contacted):</label>
+                        <input type="number" id="pdays" name="pdays" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="previous">Number of Contacts Before This Campaign:</label>
+                        <input type="number" id="previous" name="previous" required>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="poutcome">Previous Campaign Outcome:</label>
+                        <select id="poutcome" name="poutcome" required>
+                            <option value="unknown">Unknown</option>
+                            <option value="failure">Failure</option>
+                            <option value="success">Success</option>
+                        </select>
+                    </div>
+                
+                    <input type="submit" class="submit-btn" value="Submit">
+                </form>
+                
+            </div>
+        </section>
+        <!-- end form section -->
+
+            <!-- Footer -->
+    <section class="footer_section">
+        <div class="container">
+            <p>&copy; <span id="displayYear"></span> All Rights Reserved By 
+                <a href="https://html.design/" target="_blank">Free Html Templates</a>
+            </p>
+        </div>
+    </section>
+
+        <!-- jQuery -->
+        <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <!-- popper js -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <!-- bootstrap js -->
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <!-- owl slider -->
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <!-- custom js -->
+        <script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+
+</html>

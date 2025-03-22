@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title> Term prediction </title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/responsive.css" />
+    <!-- Font Awesome -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" />
+    
+    <style>
+        .result-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .result-box {
+            background: #ecf0f1;
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .prediction {
+            font-size: 22px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .not-subscribed {
+            color: #e74c3c;
+        }
+        .probability {
+            font-size: 18px;
+            color: #34495e;
+            margin-top: 10px;
+        }
+        .btn-custom {
+            text-decoration: none;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .btn-custom:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body class="sub_page">
+
+    <div class="hero_area">
+        <header class="header_section">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container">
+                    <a class="navbar-brand" href="{{ url_for('index') }}">
+                        <span>Customer Term Prediction</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class=""></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('dataset_info') }}">Dataset Info</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('eda') }}">EDA and Statistics</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('show_form') }}">Prediction Form</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">Project Info</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <!-- Prediction Result Section -->
+    <section class="result-section">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>Prediction <span>Result</span></h2>
+            </div>
+            <div class="result-box">
+                <p class="prediction {{ 'not-subscribed' if prediction == 0 else '' }}">
+                    <strong>Prediction:</strong> {{ 'Customer may Subscribe' if prediction == 1 else 'Customer may not subscribe' }}
+                </p>
+                
+                <!-- Display model details -->
+                <p><strong>Model Used:</strong> Ensemble Model (XGBoost + RandomForest)</p>
+                
+                <!-- Display model confidence score if available -->
+                <!-- {% if probability %}
+                    <p><strong>Confidence Score:</strong> {{ probability|round(2) * 100 }}%</p>
+                {% endif %} -->
+                {% if probability is not none %}
+                <p><strong>Confidence Score:</strong> {{ (probability * 100) | round(2) }}%</p>
+                {% endif %}
+
+                <!-- Display user input summary -->
+                <!-- <h3>Input Summary</h3>
+                <ul>
+                    {% for key, value in user_input.items() %}
+                        <li><strong>{{ key | replace('_', ' ') | title }}:</strong> {{ value }}</li>
+                    {% endfor %}
+                </ul> -->
+            </div>
+            <br>
+            <a href="/" class="btn-custom">Go Back</a>
+        </div>
+    </section>
+    <!-- End of Prediction Result Section -->
+
+    <!-- Footer -->
+    <section class="footer_section">
+        <div class="container">
+            <p>&copy; <span id="displayYear"></span> All Rights Reserved By 
+                <a href="https://html.design/" target="_blank">Free Html Templates</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+
+
+</html>

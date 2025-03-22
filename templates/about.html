@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  
+  <title> Term prediction </title>
+  
+  <link rel="shortcut icon" href="../static/images/favicon.png" type="">
+  
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link href="../static/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="../static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="../static/css/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="../static/images/hero-bg.png" alt="">
+      </div>
+    </div>
+
+    
+      <!-- header section starts -->
+      <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+              <span>Customer Term Prediction</span>
+            </a>
+
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class=""></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('dataset_info') }}">Dataset Info</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('eda') }}">EDA and statistics</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('show_form') }}">Prediction Form</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('about') }}">Project Info</a>
+                </li>
+              </ul>
+            </div>
+            
+
+          </nav>
+        </div>
+      </header>
+      <!-- end header section -->
+       
+     
+  </div>
+
+<!-- about section -->
+
+<section class="about_section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+        About <span>Project</span>
+      </h2>
+      <p>
+        Empowering banks with data-driven insights to enhance marketing strategies and customer engagement.
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="img-box">
+          <img src="../static/images/dataset-cover.jpeg" alt="Customer Term Prediction">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-box">
+          <h3>
+            Customer Term Prediction
+          </h3>
+          <p>
+            "Customer Term Prediction" is a machine learning project designed to predict whether a customer will subscribe to a term deposit based on their characteristics and interactions with the bank. By analyzing a bank's marketing dataset, we identify patterns in customer behavior to improve marketing effectiveness and decision-making.
+          </p>
+          <p>
+            Our approach involves data preprocessing, exploratory analysis, and building predictive models using advanced algorithms like, Decision Trees, Random Forests. We use tools such as Python, scikit-learn, and XGBoost to ensure accuracy and efficiency.
+          </p>
+          <p>
+            This project enables banks to enhance their marketing campaigns, optimize customer targeting, and boost term deposit subscription rates through intelligent predictions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ml-approach-section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>📊 Machine Learning <span>Approach</span></h2>
+    </div>
+
+    <h3>📌 Data Preprocessing</h3>
+    <p>
+      The dataset consists of customer banking details and marketing interactions. 
+      The target variable (`y`) was converted to binary:
+    </p>
+    <ul>
+      <li><strong>1 → Customer subscribed</strong></li>
+      <li><strong>0 → Customer did not subscribe</strong></li>
+    </ul>
+    <p><strong>Feature Engineering:</strong></p>
+    <ul>
+      <li>📈 <strong>Numerical Features:</strong> Scaled using StandardScaler</li>
+      <li>🔤 <strong>Categorical Features:</strong> One-Hot Encoded</li>
+    </ul>
+
+    <h3>⚖️ Handling Class Imbalance</h3>
+    <p>The dataset is imbalanced (88.3% not subscribed, 11.7% subscribed). 
+       To address this, we applied <strong>SMOTE (Synthetic Minority Over-sampling Technique)</strong>.</p>
+
+    <h3>🤖 Model Training</h3>
+    <ul>
+      <li>✅ XGBoost (Weighted) – Best for balanced accuracy</li>
+      <li>✅ Random Forest (Balanced) – Handles imbalance well</li>
+      <li>✅ Gaussian Naïve Bayes – Works well with skewed data</li>
+      <li>✅ KNN with SMOTE – Helps improve recall</li>
+    </ul>
+
+    <h3>🧑‍🤝‍🧑 Cross-Validation & Ensemble Learning</h3>
+    <p>
+      We used 5-fold cross-validation for model evaluation and combined the models into an <strong>Ensemble Model (Voting Classifier)</strong>.
+    </p>
+
+    <h3>🏆 Final Model Performance</h3>
+    <ul>
+      <li>📌 Ensemble Model Accuracy: <strong>90.57%</strong></li>
+      <li>📊 Balanced Accuracy: <strong>90.48% (Cross-validated)</strong></li>
+      <li>📈 ROC AUC:** <strong>92.24%</strong> → Good class separation</li>
+      <li>📉 PR AUC:** <strong>59.65%</strong> → Handles class imbalance well</li>
+    </ul>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <section class="footer_section">
+      <div class="container">
+          <p>&copy; <span id="displayYear"></span> All Rights Reserved By 
+              <a href="https://html.design/" target="_blank">Free Html Templates</a>
+          </p>
+      </div>
+  </section>
+
+  <!-- jQery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- custom js -->
+  <script type="text/javascript" src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+  </script>
+  <!-- End Google Map -->
+
+</body>
+
+</html>
